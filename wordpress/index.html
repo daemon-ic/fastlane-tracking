@@ -1,11 +1,23 @@
 <div style="display: flex; flex-direction: column;">
   <h5>Enter tracking number</h5>
-  <div style="display: flex; flex-direction: row; align-items: center;">
-    <input id="tracking_number_input" placeholder="Tracking number" />
-    <button id="track-button">
-      Track
-    </button>
-  </div>
-  <h5>Destination: <span id="destination" /></h5>
-  <h5>Status: <span id="status" /></h5>
+<div style="display: flex; flex-direction: row; align-items: center;">
+
+  <input id="tracking_number_input" placeholder="Tracking number" />
+  <button id="track-button">
+  Track
+  </button>
+</div>
+<p id="error" style="color: red; margin: 0px" />
+<p id="destination_parent" style="margin-top: 10px; margin-bottom: 0px; display: none">
+  Destination: <span id="destination"/>
+</p>
+<p id="status_parent" style="margin-top: 10px; margin-bottom: 0px; display: none">
+  Status: <span id="status"/>
+</p>
+<div
+  id="checkpoints"
+  style="display: flex; flex-direction: column; margin-top: 20px"
+/>
+
+
 </div>

@@ -19,6 +19,11 @@ function show(id) {
   el.style.display = 'inherit';
 }
 
+function hide(id) {
+  const el = document.getElementById(id);
+  el.style.display = 'none';
+}
+
 function populateContainer(arr, containerId) {
   const containerEl = document.getElementById(containerId);
   const divider = document.createElement('div');
@@ -43,7 +48,7 @@ function populateContainer(arr, containerId) {
 async function track(pathOrderId) {
   const inputEl = document.getElementById('tracking_number_input');
   let orderId = '';
-  if (pathOrderId) {
+  if (pathOrderId && typeof pathOrderId === 'string') {
     inputEl.value = pathOrderId;
     orderId = pathOrderId;
   } else {
@@ -57,6 +62,11 @@ async function track(pathOrderId) {
     const response = await axios.post(url, { orderId });
     const { data } = response;
     const { destination, last_status, checkpoints } = data;
+    if (!destination) {
+      populate('error', "This is an invalid order id.");
+      return;
+    }
+hide('error');
     console.log('data: ', data);
     populate('destination', destination);
     populate('status', last_status);
@@ -67,4 +77,3 @@ async function track(pathOrderId) {
     console.log('Error getting info: ', e);
   }
 }
-
